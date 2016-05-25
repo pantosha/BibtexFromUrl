@@ -30,7 +30,8 @@ chrome.tabs.query({'active': true, 'currentWindow': true}, function (tab) {
                                         localStorage["format_bx"],
                                         localStorage["date_sel"],
                                         localStorage["empty_bx"],
-                                        localStorage["acc_bx"]
+                                        localStorage["acc_bx"],
+                                        localStorage["bsuir_style"]
                                         ),
                     "clipboardholder");
   } else {

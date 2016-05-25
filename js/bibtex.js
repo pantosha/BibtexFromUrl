@@ -216,12 +216,34 @@ function lescape(str)
   return result;
 }
 
-function generateBibTeXEntry(tabTitle, tabUrl, online_not_misc,
-        date_format, omit_empty, include_accessed)
+function generateBibTeXEntryForBsuir(tabTitle, tabUrl, format)
 {
-  var abbr, suffix, entry, result;
+  const timestampDateFormat = "B-3";
+  const date = new Date();
+  
+  const abbr = tabTitle.split(' ').join('').substring(0, 5);
+  const suffix = Math.floor(Math.random() * 100);
 
-  abbr = tabTitle.split(' ').join('').substring(0, 5);
+  const entry = `@MISC{${bescape(abbr)}${suffix.toString()}:online,
+title = {${lescape(tabTitle)} [Электронный ресурс]},
+howpublished = {Электронные данные},
+note = {Режим доступа: \\url{${tabUrl}}. --- Дата доступа: ${formatDate(date, format)}},
+language = {russian},
+timestamp = {${formatDate(date, timestampDateFormat)}}
+}`;
+
+  return entry;
+}
+
+function generateBibTeXEntry(tabTitle, tabUrl, online_not_misc,
+    date_format, omit_empty, include_accessed, isBsuirStyle) {
+    var abbr, suffix, entry, result;
+
+    if (isBsuirStyle) {
+        return generateBibTeXEntryForBsuir(tabTitle, tabUrl, date_format);
+    }
+
+    abbr = tabTitle.split(' ').join('').substring(0, 5);
   suffix = Math.floor(Math.random() * 100);
 
   // entry name

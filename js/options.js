@@ -50,6 +50,10 @@ function loadOpt() {
     document
         .getElementById("acc_bx")
         .checked = (localStorage.getItem("acc_bx") == "true");
+
+    document
+    .getElementById("bsuir_style")
+    .checked = (localStorage.getItem("bsuir_style") == "true");
 }
 
 function saveEmpty() {
@@ -73,6 +77,13 @@ function saveAcc() {
         localStorage.setItem("acc_bx", "false");
 }
 
+function saveBsuirStyle() {
+    if (document.getElementById("bsuir_style").checked)
+        localStorage.setItem("bsuir_style", "true");
+    else
+        localStorage.setItem("bsuir_style", "false");
+}
+
 function saveDate() {
     var select = document.getElementById("date_sel");
     var format = select.children[select.selectedIndex].value;
@@ -85,3 +96,4 @@ document.getElementById("date_sel").addEventListener("change", saveDate);
 document.getElementById("empty_bx").addEventListener("change", saveEmpty);
 document.getElementById("format_bx").addEventListener("change", saveFormat);
 document.getElementById("acc_bx").addEventListener("change", saveAcc);
+document.getElementById("bsuir_style").addEventListener("change", saveBsuirStyle);
